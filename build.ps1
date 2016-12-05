@@ -12,23 +12,27 @@ $BuildPackagesFolderName = 'packages'
 
 $ScriptsPath       = Join-Path $BasePath          $ScriptsFolderName
 $BuildToolsPath    = Join-Path $BasePath          $BuildToolsFolderName
-$PsakePath         = Join-Path $BuildToolsPath    'psake.4.6.0\tools\psake'
+$PsakePath         = Join-Path $BuildToolsPath    'psake.4.6.0\tools\psake.ps1'
 $BuildTasksPath    = Join-Path $ScriptsFolderName 'build-tasks.ps1'
+$InstallScriptPath = Join-Path $ScriptsPath       install-build-dependencies.ps1
 
 # Install the build dependencies if they are not already.
 if (-not (Test-Path $PsakePath)) {
-    Write-Warning 'Psake not found, running install scripts...'
+    Write-Warning "$PsakePath not found, running install scripts..."
 
-    $InstallScriptPath = Join-Path $ScriptsPath install-build-dependencies.ps1
-
-    & $InstallScriptPath -BasePath $BasePath
+    & $InstallScriptPath `
+        -BasePath       $BasePath `
+        -BuildToolsPath $BuildToolsPath
 }
 
 # Execute the build tasks, passing in any additional command line arguments.
 & $PsakePath `
     $BuildTasksPath `
     $args `
-    -parameters @{ BasePath = $PSScriptRoot } `
+    -parameters @{ 
+        BasePath       = "$PSScriptRoot";
+        BuildToolsPath = "$BuildToolsPath" 
+    } `
     -nologo `
     -framework 4.5.2
 

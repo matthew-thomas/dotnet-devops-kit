@@ -9,7 +9,6 @@ Include build-functions.ps1
 
 # Define some constants
 $BasePath                       = 'Uninitialized'   # Caller must specify the base path, all other paths will be relative to it.
-$BuildToolsBinariesFolderName   = '.tools'          # The folder containing tools for building a release.
 
 # Define the input properties and their default values.
 properties {
@@ -18,7 +17,7 @@ properties {
     $SourcePath                     = Join-Path $BasePath           'src'                         # Full path to the application source code.
     $SolutionPath                   = Join-Path $SourcePath         $SolutionFileName             # Full path to the application solution file.
     $BuildOutputPath                = Join-Path $BasePath           '.build'                      # Full path to all the intermediate build output.
-    $BuildToolsBinariesPath         = Join-Path $BasePath           $BuildToolsBinariesFolderName
+    $BuildToolsPath
     $NuGetPath                      = Join-Path $BasePath           'NuGet.exe'       # Full path to NuGet.exe.
 }
 
@@ -63,7 +62,7 @@ Task UnitTest `
     Write-Host $DotNetTestDLLs.Count test dlls found.
 
     Run-DotNet-Tests `
-        -InputPackagesPath $BuildToolsBinariesPath `
+        -InputPackagesPath $BuildToolsPath `
         -ArtifactsPath     $BuildOutputPath `
         -TestDlls          $DotNetTestDLLs
 }
