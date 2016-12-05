@@ -5,14 +5,16 @@
 
 $ErrorActionPreference = 'Stop'
 
+$BuildSettingsFile = 'build-settings.json'
+$BuildSettings     = ConvertFrom-Json -InputObject (Get-Content -Path $BuildSettingsFile -Raw)
+
 $BasePath                = $PSScriptRoot    # The root of the repository.
-$BuildToolsFolderName    = '.tools'         # Build tools that are downloaded.
 $ScriptsFolderName       = 'scripts'        # Folder containing the build scripts.
 
 $ScriptsPath       = Join-Path $BasePath          $ScriptsFolderName
-$BuildToolsPath    = Join-Path $BasePath          $BuildToolsFolderName
+$BuildToolsPath    = Join-Path $BasePath          $BuildSettings.BuildToolsFolderName
 $PsakePath         = Join-Path $BuildToolsPath    'psake.4.6.0\tools\psake.ps1'
-$BuildTasksPath    = Join-Path $ScriptsFolderName 'build-tasks.ps1'
+$BuildTasksPath    = Join-Path $ScriptsPath       'build-tasks.ps1'
 $NuGetPath         = Join-Path $BasePath          'NuGet.exe'
 $InstallScriptPath = Join-Path $ScriptsPath       install-build-dependencies.ps1
 
@@ -34,9 +36,10 @@ if (-not (Test-Path $PsakePath)) {
         BasePath       = "$PSScriptRoot";
         BuildToolsPath = "$BuildToolsPath";
         NuGetPath      = "$NuGetPath"; 
+        BuildSettings  = $BuildSettings;
     } `
     -nologo `
-    -framework 4.5.2
+    -framework $BuildSettings.DotNetFrameworkVersion
 
 # Map psake result to process exit codes.
 if ($psake.build_success) { exit 0 } else { exit 1 }
