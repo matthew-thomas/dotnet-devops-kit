@@ -5,10 +5,9 @@
 
 $ErrorActionPreference = 'Stop'
 
-$BasePath                = $PSScriptRoot
-$BuildToolsFolderName   = '.tools'
-$ScriptsFolderName       = 'scripts'
-$BuildPackagesFolderName = 'packages'
+$BasePath                = $PSScriptRoot    # The root of the repository.
+$BuildToolsFolderName    = '.tools'         # Build tools that are downloaded.
+$ScriptsFolderName       = 'scripts'        # Folder containing the build scripts.
 
 $ScriptsPath       = Join-Path $BasePath          $ScriptsFolderName
 $BuildToolsPath    = Join-Path $BasePath          $BuildToolsFolderName
