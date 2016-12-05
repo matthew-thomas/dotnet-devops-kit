@@ -9,7 +9,6 @@ $ErrorActionPreference = 'Stop'
 $BasePath
 
 $BuildOutputPath              = Join-Path $BasePath $BuildOutputFolderName
-$NuGetPath                    = Join-Path $BasePath 'NuGet.exe'
 $BuildToolsPackagesConfigPath = Join-Path $BasePath 'packages.build-tools.config' 
 
 # Restore all build tools

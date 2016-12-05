@@ -14,6 +14,7 @@ $ScriptsPath       = Join-Path $BasePath          $ScriptsFolderName
 $BuildToolsPath    = Join-Path $BasePath          $BuildToolsFolderName
 $PsakePath         = Join-Path $BuildToolsPath    'psake.4.6.0\tools\psake.ps1'
 $BuildTasksPath    = Join-Path $ScriptsFolderName 'build-tasks.ps1'
+$NuGetPath         = Join-Path $BasePath          'NuGet.exe'
 $InstallScriptPath = Join-Path $ScriptsPath       install-build-dependencies.ps1
 
 # Install the build dependencies if they are not already.
@@ -22,7 +23,8 @@ if (-not (Test-Path $PsakePath)) {
 
     & $InstallScriptPath `
         -BasePath       $BasePath `
-        -BuildToolsPath $BuildToolsPath
+        -BuildToolsPath $BuildToolsPath `
+        -NuGetPath      $NuGetPath
 }
 
 # Execute the build tasks, passing in any additional command line arguments.
@@ -31,7 +33,8 @@ if (-not (Test-Path $PsakePath)) {
     $args `
     -parameters @{ 
         BasePath       = "$PSScriptRoot";
-        BuildToolsPath = "$BuildToolsPath" 
+        BuildToolsPath = "$BuildToolsPath";
+        NuGetPath      = "$NuGetPath"; 
     } `
     -nologo `
     -framework 4.5.2

@@ -8,17 +8,15 @@ $ErrorActionPreference = 'Stop'
 Include build-functions.ps1
 
 # Define some constants
-$BasePath                       = 'Uninitialized'   # Caller must specify the base path, all other paths will be relative to it.
+$BasePath = 'Uninitialized' # Caller must specify the base path, all other paths will be relative to it.
 
 # Define the input properties and their default values.
 properties {
-    $ProductName                    = 'ExampleApp'                                        # Name of the product.
-    $SolutionFileName               = "$ProductName.sln"                                  # Name of the application solution file.
-    $SourcePath                     = Join-Path $BasePath           'src'                         # Full path to the application source code.
-    $SolutionPath                   = Join-Path $SourcePath         $SolutionFileName             # Full path to the application solution file.
-    $BuildOutputPath                = Join-Path $BasePath           '.build'                      # Full path to all the intermediate build output.
-    $BuildToolsPath
-    $NuGetPath                      = Join-Path $BasePath           'NuGet.exe'       # Full path to NuGet.exe.
+    $ProductName      = 'ExampleApp'                            # Name of the product.
+    $SolutionFileName = "$ProductName.sln"                      # Name of the application solution file.
+    $SourcePath       = Join-Path $BasePath   'src'             # Full path to the application source code.
+    $SolutionPath     = Join-Path $SourcePath $SolutionFileName # Full path to the application solution file.
+    $BuildOutputPath  = Join-Path $BasePath   '.build'          # Full path to all the intermediate build output.
 }
 
 # Define the Task to call when none was specified by the caller.
