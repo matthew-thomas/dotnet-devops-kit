@@ -1,1 +1,7 @@
-build-packages/
+bin
+obj
+.vs
+.tools
+.build
+packages
+*.user
