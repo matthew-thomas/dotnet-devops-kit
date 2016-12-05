@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{3C8D4E65-3C21-4268-A9B6-166D915D43F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Test.Unit", "Web.Test.Unit\Web.Test.Unit.csproj", "{D4B54E52-26B6-4AA0-99C3-3FEE0069E2A3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C8D4E65-3C21-4268-A9B6-166D915D43F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C8D4E65-3C21-4268-A9B6-166D915D43F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4B54E52-26B6-4AA0-99C3-3FEE0069E2A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4B54E52-26B6-4AA0-99C3-3FEE0069E2A3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

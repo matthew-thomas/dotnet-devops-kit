@@ -1,0 +1,5 @@
+{
+    "BuildToolsFolderName"   : ".tools",
+    "BuildOutputFolderName"  : ".build",
+    "DotNetFrameworkVersion" : "4.5.2"
+}
