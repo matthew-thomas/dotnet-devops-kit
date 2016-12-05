@@ -12,8 +12,7 @@ $BasePath = 'Uninitialized' # Caller must specify the base path, all other paths
 
 # Define the input properties and their default values.
 properties {
-    $ProductName      = 'ExampleApp'                                                # Name of the product.
-    $SolutionFileName = "$ProductName.sln"                                          # Name of the application solution file.
+    $SolutionFileName = $BuildSettings.ProductName + '.sln'                         # Name of the application solution file.
     $SourcePath       = Join-Path $BasePath   'src'                                 # Full path to the application source code.
     $SolutionPath     = Join-Path $SourcePath $SolutionFileName                     # Full path to the application solution file.
     $BuildOutputPath  = Join-Path $BasePath   $BuildSettings.BuildOutputFolderName  # Full path to all the intermediate build output.
